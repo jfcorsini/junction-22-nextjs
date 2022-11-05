@@ -1,26 +1,30 @@
 import React from 'react'
-import { Box, Flex, Text } from '@chakra-ui/react';
-import { MyParticles } from '../components/MyParticles';
+import { Box, Container, Flex, Text } from '@chakra-ui/react';
+import { NightSky } from '../components/NightSky';
+import { SolarFlare } from '../components/SolarFlare';
+import { Terminal } from '../components/Terminal';
 
 export default function Home() {
 
 return (
   <Box position="relative" overflow="hidden" >
-    <Box position="absolute">
-      <MyParticles />
-    </Box>
+    <NightSky />
   
-    <Flex
-      alignItems="center"
-      justifyContent="center"
+    <Box
       position="relative"
       zIndex="1"  
       height="100vh"
       width="100vw">
-      <Text color="#FFF" fontSize="4xl" letterSpacing="widest" fontStyle="oblique">
-        CONSTELLATION
-      </Text>
-    </Flex>
+      <Flex justifyContent="center" mt={2}>
+        <Text color="#FFF" fontSize="2xl" letterSpacing="widest" fontStyle="oblique">
+          CONSTELLATION
+        </Text>
+      </Flex>
+      <Flex justifyContent="center" mt={2} height="full" pb={20}>
+        <SolarFlare />
+        <Terminal />
+      </Flex>
+    </Box>
   </Box>    
 );
 }
