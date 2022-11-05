@@ -4,6 +4,7 @@ import p5Types from "p5"; //Import this for typechecking and intellisense
 
 interface ComponentProps {
 	//Your component props
+	getIntensities: () => number[];
 }
 
 const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
@@ -55,7 +56,6 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 	const PI=3.1415
 	var intensearea = PI/6;
 	const intenseAngles = [0+PI/6, PI/3+PI/6, PI*2/3+PI/6, PI+PI/6, PI*4/3+PI/6, PI*5/3+PI/6];
-	const intensities = [2, 1.3, 2.5, 0.5, 2.5, 2.1];
 	const intensityBaseline = 0.8;
 
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -75,7 +75,8 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 				var targetAngle = intenseAngles[angleIndex];//+p5.random(PI/8);
 				if (particles[i].angle < targetAngle+intensearea && particles[i].angle > targetAngle-intensearea) {
 					//intensity = 0.03/(abs(particles[i].angle - intenseAngle));
-					intensity = intensityBaseline+intensities[angleIndex]*((intensearea-Math.abs(particles[i].angle - targetAngle))/intensearea);
+					const intensities = props.getIntensities();
+					intensity = intensityBaseline+ 3*intensities[angleIndex]*((intensearea-Math.abs(particles[i].angle - targetAngle))/intensearea);
 				}
 			}
 			particles[i].move(intensity);
