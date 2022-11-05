@@ -33,7 +33,6 @@
     "react-simple-code-editor": "^0.13.1",
     "tsparticles": "^2.5.1",
     "tsparticles-engine": "^2.5.0",
-    "tsparticles-preset-firefly": "^2.5.1",
     "tsparticles-preset-stars": "^2.5.1",
     "typescript": "4.8.4",
     "typewriter-effect": "^2.19.0"
