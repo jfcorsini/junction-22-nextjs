@@ -3,7 +3,7 @@
 Make sure that you have a valid .env file
 
 ```bash
-cp example.env .env
+cp example.env .env.local
 ```
 
 Install dependencies with
