@@ -3,19 +3,17 @@ import Ajv, {JSONSchemaType} from "ajv"
 const ajv = new Ajv()
 
 export type DataRequest = {
-  model: "sleep" | "hrv"
-  timestamp: number;
-  value: number;
+  model: "sleep" | "pulse"
+  value: number[];
 }
 
 const dataRequestSchema: JSONSchemaType<DataRequest> = {
   type: "object",
   properties: {
-    model: { type: "string", enum: ["sleep", "hrv"] },
-    timestamp: {type: "integer"},
-    value: {type: "number"},
+    model: { type: "string", enum: ["sleep", "pulse"] },
+    value: { type: "array", items: { type: "number" } },
   },
-  required: ["model", "timestamp", "value"],
+  required: ["model", "value"],
   additionalProperties: false
 }
 

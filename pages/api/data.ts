@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { supabase } from '../../utils/db';
 import { DataRequest, validateDataRequest } from '../../utils/validator';
@@ -20,11 +19,35 @@ export default async function handler(
     console.error(error, 'Failed to validate request body');
     return res.status(500).json({ error: "Wrong data format" });
   }
+  const timestamp = new Date().toISOString()
 
-  await supabase.from(body.model).upsert({
-    timestamp: new Date(body.timestamp).toISOString(),
-    value: body.value
-  });
+  if (!body.value.length) {
+    return res.status(200).json({ message: "Empty values" });
+  }
+
+  if (body.model === "sleep") {
+    await supabase.from("sleep").insert({
+      timestamp,
+      value: body.value
+    });
+  } else if (body.model === "pulse") {
+    // TODO: Calculate HRV & HR from array
+    const hrv = body.value[0];
+    const hr = body.value[0];
+
+    await supabase.from("hrv").insert({
+      timestamp,
+      value: hrv
+    });
+
+    await supabase.from("hr").insert({
+      timestamp,
+      value: hr
+    });
+  } else {
+    return res.status(500).json({ message: "Unexpected body model" });
+  }
+
 
   res.status(200).json({ message: "Success" });
 }
