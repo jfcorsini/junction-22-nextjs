@@ -4,7 +4,7 @@ import { Container, Text } from '@chakra-ui/react';
 import dynamic from 'next/dynamic'
 
 const DynamicComponentWithNoSSR = dynamic(
-  () => import('./Another'),
+  () => import('./dotFlare'),
   { ssr: false }
 )
 
