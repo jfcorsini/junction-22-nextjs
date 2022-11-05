@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Container, Text } from '@chakra-ui/react';
 
 import dynamic from 'next/dynamic'
+import { getMocks } from '../../utils/mock';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('./dotFlare'),
@@ -10,13 +11,14 @@ const DynamicComponentWithNoSSR = dynamic(
 
 
 export const SolarFlare = () => {
-  var intensities = [0.2, 0.1, 0.25, 0.1, 1, 0.6]
+  const mocks = getMocks();
+  var intensities = Object.values(mocks.nextMock().intensities)
   useEffect(() => {
     const interval = setInterval(() => {
       if (intensities[0] != 0)
       intensities = [0, 0, 0, 0, 0, 0]
       else
-      intensities = [0.2, 0.1, 0.4, 0.8, 1, 0.6]
+      intensities = Object.values(mocks.nextMock().intensities)
     }, 4000);
     return () => clearInterval(interval);
   }, []);
