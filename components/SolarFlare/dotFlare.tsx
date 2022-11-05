@@ -4,6 +4,7 @@ import p5Types from "p5"; //Import this for typechecking and intellisense
 
 interface ComponentProps {
 	//Your component props
+	getIntensities: () => number[];
 }
 
 const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
@@ -26,9 +27,9 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 			this.surfaceR = surfaceR;
 			this.speed = 0;
 			this.angle = a;
-			this.size = 1+p5.random(2);
+			this.size = 0.5+p5.random(1.7);
 			this.forceOutside = 0.2;
-			this.bounce = this.forceOutside*4+p5.random(4);
+			this.bounce = this.forceOutside * 5 + p5.random(1.5);
 		}
 
 		move(intensity: number) {
@@ -51,19 +52,18 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 
 	var count = 1000;
 	var particles: Particle[] = [];
-	var radius = 90;
+	var radius = 70;
 	const PI=3.1415
-	var intensearea = PI/12;
-	const intenseAngles = [0, PI/3, PI*2/3, PI, PI*4/3, PI*5/3];
-	const intensities = [2, 1.3, 2.5, 0.5, 2.5, 2.1];
-	const intensityBaseline = 0.2;
+	var intensearea = PI/6;
+	const intenseAngles = [0+PI/6, PI/3+PI/6, PI*2/3+PI/6, PI+PI/6, PI*4/3+PI/6, PI*5/3+PI/6];
+	const intensityBaseline = 0.8;
 
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-		p5.createCanvas(500, 500).parent(canvasParentRef);
+		p5.createCanvas(500, 800).parent(canvasParentRef);
 		p5.colorMode(p5.HSB, 255);
 		for (let i = 0; i < count; i++) {
 			let angle = ((2*PI)/count)*i+p5.random(2);
-			particles.push(new Particle(500/2, 500/2, angle, radius, p5));
+			particles.push(new Particle(500/2, 800/2, angle, radius, p5));
 		}
 	};
 
@@ -72,13 +72,13 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 		for (let i = 0; i < particles.length; i++) {
 			var intensity = 1;
 			for (const angleIndex in intenseAngles) {
-				var targetAngle = intenseAngles[angleIndex]+p5.random(PI/8);
+				var targetAngle = intenseAngles[angleIndex];//+p5.random(PI/8);
 				if (particles[i].angle < targetAngle+intensearea && particles[i].angle > targetAngle-intensearea) {
 					//intensity = 0.03/(abs(particles[i].angle - intenseAngle));
-					intensity = intensities[angleIndex]*((intensearea-Math.abs(particles[i].angle - targetAngle))/intensearea);
+					const intensities = props.getIntensities();
+					intensity = intensityBaseline+ 3*intensities[angleIndex]*((intensearea-Math.abs(particles[i].angle - targetAngle))/intensearea);
 				}
 			}
-			if (intensity < intensityBaseline) intensity = intensityBaseline;
 			particles[i].move(intensity);
 			particles[i].display(p5);
 		}
