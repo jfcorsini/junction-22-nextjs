@@ -4,14 +4,14 @@ import { Container, Text } from '@chakra-ui/react';
 import dynamic from 'next/dynamic'
 
 const DynamicComponentWithNoSSR = dynamic(
-  () => import('./Sketch'),
+  () => import('./Another'),
   { ssr: false }
 )
 
 
 export const SolarFlare = () => {
   return (
-    <Container backgroundColor="#FFF" height="full">
+    <Container display="flex" alignItems="center" justifyContent="center">
       <DynamicComponentWithNoSSR />
     </Container>)
 }
