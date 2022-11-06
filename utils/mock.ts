@@ -15,13 +15,13 @@ export type Mock = {
 }
 
 export const getMocks = () => {
-  let counter = 0;
+  let counter = -1;
 
   return {
     nextMock: () => {
       counter++;
       return mockData[counter % mockData.length];
-    }
+    },
   }
 }
 
