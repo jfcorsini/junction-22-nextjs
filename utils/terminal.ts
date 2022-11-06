@@ -1,5 +1,6 @@
 import { Mock, mockData } from "./mock";
 
+// <span style="color:blue">
 export const getDailyText = (mock: Mock, dayAddition: number) => {
   const formattedDate = new Date(mock.date)
   const firstDate = new Date(mockData[0].date)

@@ -1,9 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { Box, Container, Text } from '@chakra-ui/react';
-// import { highlight, languages } from 'prismjs/components/prism-core';
-// import 'prismjs/components/prism-clike';
-// import 'prismjs/components/prism-javascript';
-// import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 //@ts-ignore Library doesn't have types
 import { TitleBar } from 'react-desktop/windows';
@@ -72,9 +68,10 @@ const Terminal = () => {
         <Editor
           value={text.slice(0, charNum)}
           onValueChange={() => null}
-          highlight={code => code}
           padding={10}
-          // highlight={code => highlight(code, languages.js)} 
+          highlight={c => {
+            return (<div contentEditable='true' dangerouslySetInnerHTML={{ __html: c }}></div>)
+          }} 
           style={{
             backgroundColor: '#222',
             width: "100%",
