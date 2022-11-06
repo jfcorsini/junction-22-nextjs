@@ -17,22 +17,9 @@ const TimeBar = dynamic(
 )
 
 export const SolarFlare = () => {
-  const mocks = getMocks();
-  const mocCount = mockData.length
-  var currentMock = 0
-  var intensities = Object.values(mocks.nextMock().intensities)
-
-  useEffectOnce(() => {
-    const interval = setInterval(() => {
-      intensities = Object.values(mocks.nextMock().intensities)
-      currentMock++
-    }, 4000);
-    return () => clearInterval(interval);
-  });
-
   return (
     <Container display="flex" flexDirection="column" alignItems="center" justifyContent="center">
       <DynamicComponentWithNoSSR />
-      <TimeBar width={300} getDateLocation={() => {return currentMock/mocCount}}/>
+      <TimeBar width={300} />
     </Container>)
 }
