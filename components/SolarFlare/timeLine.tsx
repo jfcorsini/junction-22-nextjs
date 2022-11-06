@@ -21,7 +21,7 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
   }, []);
 
 	var x = 5
-	var ogSpeed = 1
+	var ogSpeed = 0.1
 	const height = 40
 	const width = props.width
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -31,8 +31,8 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 
 	const draw = (p5: p5Types) => {
 		const targetLocation = 5 + ((currentMockNumber * (1 / mockData.length) * (width-10))%(width-10) )
-		var speed = ogSpeed
-		if (Math.abs(targetLocation-x) > speed) {
+		var speed = ogSpeed * Math.abs(targetLocation-x)
+		if (Math.abs(targetLocation-x) > ogSpeed) {
 			if (targetLocation > x) x += speed
 			else x -= speed
 		}
