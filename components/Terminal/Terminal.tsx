@@ -60,7 +60,7 @@ const Terminal = () => {
       display="flex"
       flexDirection="column"
       justifyContent="center"
-      overflow="scroll"
+      overflow="hidden"
       >
       <TitleBar controls theme="dark" title="Black Box" />
       <Scrollbars ref={scrollRef} style={{ height: 600 }}>
