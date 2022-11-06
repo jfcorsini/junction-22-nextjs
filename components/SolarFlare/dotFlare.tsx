@@ -62,6 +62,7 @@ const MySketch = () => {
 	const PI=3.1415
 	var intensearea = PI/6;
 	const intenseAngles = [0+PI/6, PI/3+PI/6, PI*2/3+PI/6, PI+PI/6, PI*4/3+PI/6, PI*5/3+PI/6];
+
 	const intensityBaseline = 0.8;
 
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -90,7 +91,38 @@ const MySketch = () => {
 		}
 	};
 
-	return <Sketch setup={setup} draw={draw} />;
+
+	const positions = []
+	var parameterTextRadius = 250;
+
+	const parametertexts = [
+		"SLEEP",
+		"HRV",
+		"TEMPERATURE",
+		"ACTIVITY",
+		"BREATH",
+		"WORK",
+	];
+
+	for (const angle of intenseAngles) {
+		positions.push([500/2+1.1*parameterTextRadius*Math.cos(angle)-75, 600/2+parameterTextRadius*Math.sin(angle)-20])
+	}
+
+	return (
+		<>
+		<div style={{ position: "relative"}}>
+			<Sketch setup={setup} draw={draw} />
+			<div style={{zIndex: 2}}>
+				<p style={{textAlign: "center", width: 150, position: "absolute", color: "white", left: positions[0][0], top: positions[0][1]}}>{parametertexts[0]}</p>
+				<p style={{textAlign: "center", width: 150, position: "absolute", color: "white", left: positions[1][0], top: positions[1][1]}}>{parametertexts[1]}</p>
+				<p style={{textAlign: "center", width: 150, position: "absolute", color: "white", left: positions[2][0], top: positions[2][1]}}>{parametertexts[2]}</p>
+				<p style={{textAlign: "center", width: 150, position: "absolute", color: "white", left: positions[3][0], top: positions[3][1]}}>{parametertexts[3]}</p>
+				<p style={{textAlign: "center", width: 150, position: "absolute", color: "white", left: positions[4][0], top: positions[4][1]}}>{parametertexts[4]}</p>
+				<p style={{textAlign: "center", width: 150, position: "absolute", color: "white", left: positions[5][0], top: positions[5][1]}}>{parametertexts[5]}</p>
+			</div>
+		</div>
+		</>
+	);
 };
 
 export default MySketch;
