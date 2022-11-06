@@ -12,6 +12,7 @@ export type Mock = {
   date: string;
   intensities: Intensities;
   value: Intensities;
+  action?: string
 }
 
 export const getMocks = () => {
@@ -142,6 +143,7 @@ export const mockData: Mock[] = [
   },
   {
     date: "2022.10.11",
+    action: "Schedule longer lunch break for tomorrow.",
     value: {
       sleep: 3,
       hrv: 66,
@@ -218,6 +220,7 @@ export const mockData: Mock[] = [
   },
   {
     date: "2022.10.17",
+    action: "Call from healthcare professional scheduled.",
     value: {
       sleep: 8,
       hrv: 85,
@@ -351,6 +354,7 @@ export const mockData: Mock[] = [
   },
   {
     date: "2022.10.26",
+    action: "Overtime work requires taking flexitime.",
     value: {
       sleep: 7,
       hrv: 95,
