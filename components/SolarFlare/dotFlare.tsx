@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Sketch from "react-p5";
 import p5Types from "p5"; //Import this for typechecking and intellisense
+import { getMocks } from "../../utils/mock";
 
-interface ComponentProps {
-	//Your component props
-	getIntensities: () => number[];
-}
+const MySketch = () => {
+  var mocks = getMocks();
+  const intensitiesRef = useRef<number[]>(Object.values(mocks.nextMock().intensities))
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      intensitiesRef.current = Object.values(mocks.nextMock().intensities)
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
-const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 	//See annotations in JS for more information
 	class Particle {
 		centerY: number
@@ -68,6 +74,7 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 	};
 
 	const draw = (p5: p5Types) => {
+    const intensities = intensitiesRef.current
 		p5.background(0);
 		for (let i = 0; i < particles.length; i++) {
 			var intensity = 1;
@@ -75,7 +82,6 @@ const MySketch: React.FC<ComponentProps> = (props: ComponentProps) => {
 				var targetAngle = intenseAngles[angleIndex];//+p5.random(PI/8);
 				if (particles[i].angle < targetAngle+intensearea && particles[i].angle > targetAngle-intensearea) {
 					//intensity = 0.03/(abs(particles[i].angle - intenseAngle));
-					const intensities = props.getIntensities();
 					intensity = intensityBaseline+ 3*intensities[angleIndex]*((intensearea-Math.abs(particles[i].angle - targetAngle))/intensearea);
 				}
 			}
