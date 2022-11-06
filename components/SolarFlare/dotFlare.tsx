@@ -25,6 +25,7 @@ const MySketch = () => {
 		size: number
 		forceOutside: number;
 		bounce: number;
+		bri: number;
 
 		constructor(centerX: number, centerY: number, a: number, surfaceR: number, p5: p5Types) {
 			this.centerY = centerY;
@@ -36,10 +37,12 @@ const MySketch = () => {
 			this.size = 0.5+p5.random(1.7);
 			this.forceOutside = 0.2;
 			this.bounce = this.forceOutside * 5 + p5.random(1.5);
+			this.bri=0;
 		}
 
 		move(intensity: number) {
 			this.angle += PI/1000;
+			this.bri -= (this.bri-this.bounce * intensity*60)/10;
 			if(this.angle > 2*PI) this.angle -= 2*PI
 			if (this.r > this.surfaceR) {
 				this.speed -= this.forceOutside * (this.r/100);
@@ -52,7 +55,7 @@ const MySketch = () => {
 
 		display(p5: p5Types) {
 			p5.strokeWeight(this.size);
-			p5.stroke(140, 0, 255);
+			p5.stroke(40, 0, 20 + this.bri);
 			const angleDraw = this.angle;// + random(PI/300);
 			p5.point(this.centerX + ((this.surfaceR+this.r)*Math.cos(angleDraw)), this.centerY + ((this.surfaceR+this.r)*Math.sin(angleDraw)));
 		}
