@@ -4,8 +4,11 @@ import { Box, Container, Text } from '@chakra-ui/react';
 // import 'prismjs/components/prism-clike';
 // import 'prismjs/components/prism-javascript';
 // import 'prismjs/themes/prism.css'; //Example style, you can use another
+
+//@ts-ignore Library doesn't have types
 import { TitleBar } from 'react-desktop/windows';
 import Editor from 'react-simple-code-editor';
+//@ts-ignore Library doesn't have types
 import { Scrollbars } from 'react-custom-scrollbars';
 import { mockData } from '../../utils/mock';
 import { getDailyText } from '../../utils/terminal';
@@ -45,6 +48,7 @@ const Terminal = () => {
       setCharNum(Math.min(text.length, charNum + 2));
 
       if (scrollRef.current) {
+        //@ts-ignore Bad types...
         scrollRef.current.scrollToBottom();
       }
     }, 20);
