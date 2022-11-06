@@ -17,10 +17,12 @@ export const getDailyText = (mock: Mock, dayAddition: number) => {
 
   if (mock.action) {
     return result + `
+    <span style="color:#c5947c">
     ....................
     Flare detected.
     Action: ${mock.action}
     ....................
+    </span>
     `
   }
 
