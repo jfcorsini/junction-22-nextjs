@@ -1,8 +1,11 @@
-import { Mock } from "./mock";
+import { Mock, mockData } from "./mock";
 
-export const getDailyText = (mock: Mock) => {
-  const formattedDate = new Date(mock.date).toLocaleDateString()
-  const result = `Date: ${formattedDate}:
+export const getDailyText = (mock: Mock, dayAddition: number) => {
+  const formattedDate = new Date(mock.date)
+  const firstDate = new Date(mockData[0].date)
+  const weekends = Math.floor((dayAddition) / 5)
+  formattedDate.setDate(firstDate.getDate() + dayAddition + weekends*2);
+  const result = `Date: ${formattedDate.toLocaleDateString()}:
   - Sleep: ${mock.value.sleep} hours
   - Heart Rate Variability: ${mock.value.hrv} ms
   - Temperature: ${mock.value.temp} °C

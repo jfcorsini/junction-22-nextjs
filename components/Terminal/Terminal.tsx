@@ -26,7 +26,7 @@ const Terminal = () => {
   const updateText = React.useCallback(() => {
     setMockNumber((prev) => prev + 1);
     const oldText = text;
-    const nextText = `${oldText}\n${getDailyText(mocks.current.nextMock())}`
+    const nextText = `${oldText}\n${getDailyText(mocks.current.nextMock(), mockNumber)}`
     setText(nextText);
     setCharNum(oldText.length);
   }, [mockNumber, text]);
