@@ -10,7 +10,7 @@ import { TitleBar } from 'react-desktop/windows';
 import Editor from 'react-simple-code-editor';
 //@ts-ignore Library doesn't have types
 import { Scrollbars } from 'react-custom-scrollbars';
-import { mockData } from '../../utils/mock';
+import { getMocks } from '../../utils/mock';
 import { getDailyText } from '../../utils/terminal';
 import { useEffectOnce } from '../../utils/hooks';
 
@@ -18,6 +18,7 @@ const TOTAL_TIME_MS = 4000;
 
 const Terminal = () => {
   const scrollRef = useRef()
+  const mocks = useRef(getMocks())
   const [mockNumber, setMockNumber] = React.useState(0);
   const [text, setText] = React.useState("");
   const [charNum, setCharNum] = React.useState(0);
@@ -25,7 +26,7 @@ const Terminal = () => {
   const updateText = React.useCallback(() => {
     setMockNumber((prev) => prev + 1);
     const oldText = text;
-    const nextText = `${oldText}\n${getDailyText(mockData[mockNumber % mockData.length])}`
+    const nextText = `${oldText}\n${getDailyText(mocks.current.nextMock())}`
     setText(nextText);
     setCharNum(oldText.length);
   }, [mockNumber, text]);
