@@ -65,7 +65,7 @@ const Terminal = () => {
       justifyContent="center"
       overflow="scroll"
       >
-      <TitleBar controls theme="dark" title="Notes" />
+      <TitleBar controls theme="dark" title="Black Box" />
       <Scrollbars ref={scrollRef} style={{ height: 600 }}>
 
         <Editor
