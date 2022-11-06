@@ -45,7 +45,7 @@ const Terminal = () => {
   // Update typed text
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setCharNum(Math.min(text.length, charNum + 2));
+      setCharNum(Math.min(text.length, charNum + 30));
 
       if (scrollRef.current) {
         //@ts-ignore Bad types...

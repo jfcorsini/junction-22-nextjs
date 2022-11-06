@@ -65,11 +65,11 @@ const MySketch = () => {
 	const intensityBaseline = 0.8;
 
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-		p5.createCanvas(500, 800).parent(canvasParentRef);
+		p5.createCanvas(500, 600).parent(canvasParentRef);
 		p5.colorMode(p5.HSB, 255);
 		for (let i = 0; i < count; i++) {
 			let angle = ((2*PI)/count)*i+p5.random(2);
-			particles.push(new Particle(500/2, 800/2, angle, radius, p5));
+			particles.push(new Particle(500/2, 600/2, angle, radius, p5));
 		}
 	};
 
