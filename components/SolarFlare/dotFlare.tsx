@@ -39,6 +39,8 @@ const MySketch = () => {
 		}
 
 		move(intensity: number) {
+			this.angle += PI/1000;
+			if(this.angle > 2*PI) this.angle -= 2*PI
 			if (this.r > this.surfaceR) {
 				this.speed -= this.forceOutside * (this.r/100);
 			} else {
