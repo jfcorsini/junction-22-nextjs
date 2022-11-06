@@ -12,9 +12,9 @@ const DynamicComponentWithNoSSR = dynamic(
 
 
 export const SolarFlare = () => {
-  const mocks = getMocks();
+  var mocks = getMocks();
   var intensities = Object.values(mocks.nextMock().intensities)
-
+  
   useEffectOnce(() => {
     const interval = setInterval(() => {
       intensities = Object.values(mocks.nextMock().intensities)
