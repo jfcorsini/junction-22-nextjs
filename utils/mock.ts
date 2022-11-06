@@ -8,8 +8,8 @@ export type Intensities = {
   workHours: number;
 }
 
-type Mock = {
-  date: number;
+export type Mock = {
+  date: string;
   intensities: Intensities;
   value: Intensities;
 }
@@ -27,7 +27,7 @@ export const getMocks = () => {
 
 export const mockData: Mock[] = [
   {
-    date: 1,
+    date: "2022.10.03",
     value: {
       sleep: 8,
       hrv: 66,
@@ -46,9 +46,9 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 2,
+    date: "2022.10.04",
     value: {
-      sleep: 8,
+      sleep: 7.5,
       hrv: 66,
       temp: 36.6,
       activity: 27,
@@ -65,7 +65,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 3,
+    date: "2022.10.05",
     value: {
       sleep: 8,
       hrv: 66,
@@ -84,7 +84,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 4,
+    date: "2022.10.06",
     value: {
       sleep: 8,
       hrv: 66,
@@ -103,7 +103,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 5,
+    date: "2022.10.07",
     value: {
       sleep: 8,
       hrv: 66,
@@ -122,7 +122,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 6,
+    date: "2022.10.10",
     value: {
       sleep: 5,
       hrv: 66,
@@ -141,7 +141,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 7,
+    date: "2022.10.11",
     value: {
       sleep: 3,
       hrv: 66,
@@ -160,7 +160,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 8,
+    date: "2022.10.12",
     value: {
       sleep: 3,
       hrv: 66,
@@ -179,7 +179,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 9,
+    date: "2022.10.13",
     value: {
       sleep: 5,
       hrv: 75,
@@ -198,7 +198,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 10,
+    date: "2022.10.14",
     value: {
       sleep: 8,
       hrv: 85,
@@ -217,7 +217,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 11,
+    date: "2022.10.17",
     value: {
       sleep: 8,
       hrv: 85,
@@ -236,7 +236,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 12,
+    date: "2022.10.18",
     value: {
       sleep: 8,
       hrv: 82,
@@ -255,7 +255,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 13,
+    date: "2022.10.19",
     value: {
       sleep: 6,
       hrv: 80,
@@ -274,7 +274,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 14,
+    date: "2022.10.20",
     value: {
       sleep: 4,
       hrv: 78,
@@ -293,7 +293,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 15,
+    date: "2022.10.21",
     value: {
       sleep: 6,
       hrv: 72,
@@ -312,7 +312,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 16,
+    date: "2022.10.24",
     value: {
       sleep: 8,
       hrv: 66,
@@ -331,7 +331,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 17,
+    date: "2022.10.25",
     value: {
       sleep: 8,
       hrv: 85,
@@ -350,7 +350,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 18,
+    date: "2022.10.26",
     value: {
       sleep: 7,
       hrv: 95,
@@ -369,7 +369,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 19,
+    date: "2022.10.27",
     value: {
       sleep: 2,
       hrv: 105,
@@ -388,7 +388,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 20,
+    date: "2022.10.28",
     value: {
       sleep: 5,
       hrv: 95,
@@ -407,7 +407,7 @@ export const mockData: Mock[] = [
     }
   },
   {
-    date: 21,
+    date: "2022.10.31",
     value: {
       sleep: 7,
       hrv: 85,
